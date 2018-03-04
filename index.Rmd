@@ -220,9 +220,9 @@ analysis thus far:
    pre-CFPL period), that the treatment and control groups only differ
    by a constant, meaning that their pre-treatment trends are
    "parallel". 
-2. Foreclosures increased *both* in California and the other Sand
-   States increase following the implementation of the CFPLs. Thus, if
-   we just looked at California, it would appear as if the CFPLs were
+2. Foreclosures increased *both* in California and in the other Sand
+   States following the implementation of the CFPLs. Thus, if we just
+   looked at California, it would appear as if the CFPLs were
    ineffective at lowering foreclosures
 3. The increase in mean California foreclosures was much smaller than
    the increase in mean foreclosures for the other states. Thus, if we
@@ -249,6 +249,18 @@ their standard errors (for statistical significance). Note that we'll
 only use data from the Sand States (which contain both CA, or
 treatment, and our controls, AZ and NV) and use White standard errors
 to correct for any potential heteroskedasticity in our data.
+
+The regression formula is 
+
+$$
+Y_{it} = \alpha + \beta_1 \text{CA}_i + \beta_2 \text{CFPL}_t + \delta
+\text{CA}_i \text{CFPL}_t + \varepsilon_{it}
+$$
+
+where $\delta$ is the coefficient of interest and represents our DD
+estimate. 
+
+The corresponding `R` code is 
 
 ```{r }
 lm(zillow.forc ~ CA * CFPL, data = DT[sand.state == 1], weights = hh2000) %>%

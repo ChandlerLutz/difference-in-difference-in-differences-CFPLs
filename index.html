@@ -436,7 +436,7 @@ print(dd.means)</code></pre>
 <p>From the graph, we see the following points that summarize our DD analysis thus far:</p>
 <ol type="1">
 <li>In the pre-CFPL period (<code>CFPL = 0</code>), average foreclosures in both the treatment group (<code>CA = 1</code>) and control group (<code>CA = 0</code>) are similar. Thus, the treatment and control groups are similar during the pre-treatment period. In the jargon of DD studies, we say that “the parallel pre-trends assumption is satisfied”. The parallel pre-trends assumption, the key assumption for DD studies, says that during the pre-treatment period (in our case here during the pre-CFPL period), that the treatment and control groups only differ by a constant, meaning that their pre-treatment trends are “parallel”.</li>
-<li>Foreclosures increased <em>both</em> in California and the other Sand States increase following the implementation of the CFPLs. Thus, if we just looked at California, it would appear as if the CFPLs were ineffective at lowering foreclosures</li>
+<li>Foreclosures increased <em>both</em> in California and in the other Sand States following the implementation of the CFPLs. Thus, if we just looked at California, it would appear as if the CFPLs were ineffective at lowering foreclosures</li>
 <li>The increase in mean California foreclosures was much smaller than the increase in mean foreclosures for the other states. Thus, if we use the other Sand States as a counterfactual (the path for California in the absence of the policy), the plots shows that the CFPLs noticeably reduced foreclosures in California.</li>
 </ol>
 <p>Using the above formula for the means DD estimator, we have:</p>
@@ -448,6 +448,13 @@ print(dd.means)</code></pre>
 <section id="difference-in-differences-dd-means-estimate-using-regression" class="level1">
 <h1><span class="header-section-number">9</span> Difference-in-differences (DD) means estimate using regression</h1>
 <p>We can also obtain our DD estimate and assess our parallel pre-trends assumption through a regression. The advantage of the regression is that it simultaneously outputs the estimates of interest as well as their standard errors (for statistical significance). Note that we’ll only use data from the Sand States (which contain both CA, or treatment, and our controls, AZ and NV) and use White standard errors to correct for any potential heteroskedasticity in our data.</p>
+<p>The regression formula is</p>
+<p><span class="math display">\[
+Y_{it} = \alpha + \beta_1 \text{CA}_i + \beta_2 \text{CFPL}_t + \delta
+\text{CA}_i \text{CFPL}_t + \varepsilon_{it}
+\]</span></p>
+<p>where <span class="math inline">\(\delta\)</span> is the coefficient of interest and represents our DD estimate.</p>
+<p>The corresponding <code>R</code> code is</p>
 <pre class="r"><code>lm(zillow.forc ~ CA * CFPL, data = DT[sand.state == 1], weights = hh2000) %&gt;%
     coeftest(vcov = sandwich)</code></pre>
 <pre><code>## 
