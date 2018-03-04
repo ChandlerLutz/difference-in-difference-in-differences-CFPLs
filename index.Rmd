@@ -41,13 +41,12 @@ h2 { /* Header 2 */
 
 # Overview
 
-This case study will use a
-difference-in-difference-in-differences(DDD) research design to study
-the impact of the 2008 California Foreclosure Prevention Laws (CFPLs)
-that aimed to reduce foreclosures at the height of the financial
-crises. These laws are called the California Foreclosure Prevention
-Laws. We first start with a classic difference-in-differences analysis
-and then cover the DDD approach.
+This case study will use a difference-in-difference-in-differences
+(DDD) research design to study the impact of the 2008 California
+Foreclosure Prevention Laws (CFPLs) that aimed to reduce foreclosures
+at the height of the financial crises. These laws are called the
+California Foreclosure Prevention Laws. We first start with a classic
+difference-in-differences analysis and then cover the DDD approach.
 
 # Preliminaries
 
@@ -104,7 +103,7 @@ The data contain the following variables:
 * `fips.code` -- the five-digit county fips code 
 * `CFPL` -- and indicator that equals `1` for the CFPL treatment
   period 
-* `zillow.forc` -- the real estate owned (RE0) foreclosures per 10,000
+* `zillow.forc` -- the real estate owned (REO) foreclosures per 10,000
   homes 
 * `forc.high` -- and indicator equal to 1 for "high" foreclosure
   counties. Classification of counties as high or low foreclosure
@@ -119,8 +118,7 @@ head(DT)
 # Research Goal
 
 Our aim is to estimate the effects of the CFPLs on the foreclosures,
-`zillow.forc`. We will use counties in Arizona and Nevada as the
-control group and counties in California as the treatment group. 
+`zillow.forc`. 
 
 # Difference-in-differences (DD)
 
@@ -128,7 +126,11 @@ We can first analyze the effects of the program using a simple DD
 setup. The idea behind a DD research design, is that we can estimate
 the effects of the policy by comparing the change in mean foreclosures
 for counties in California relative to the change in mean foreclosures
-for the other Sand States. 
+for Arizona and Nevada. Specifically, we will use counties in
+Arizona and Nevada as the control group and counties in California as
+the treatment group. Together, California, Arizona, and Nevada make up
+the "Sand States" (note: Florida is also considered a Sand State, but
+Florida is not in our dataset). 
 
 Let `CFPL = 0` for the pre-CFPL period and `CFPL = 1` for the CFPL
 treatment period. Also, `CA = 1` for California counties and `CA = 0`
@@ -278,7 +280,8 @@ Here's what else we learn from the above regression output:
    significant. Thus there is a statistically significant difference
    in foreclosures between California counties and the controls during
    the CFPL period
-3. `-660.152` is the DD estimate 
+3. `-660.152` is the DD estimate and it is statistically significant
+   with a t-statistic of `-3.61` 
 
 # Other Difference-in-differences estimators
 
@@ -300,9 +303,9 @@ lm(zillow.forc ~ CFPL * forc.high, data = DT[CA == 1], weights = hh2000) %>%
 
 The coefficient on `forc.high` is significant, indicating that during
 the pre-CFPL period, that high foreclosure counties experienced more
-(2.73 times more, how did I get that number?) foreclosures than low
-foreclosure counties. This makes sense, but suggests that our parallel
-pre-trends assumption is violated. 
+foreclosures than low foreclosure counties (2.73 times more
+foreclosures, how did I get that number?). This makes sense, but
+suggests that our parallel pre-trends assumption is violated.
 
 Further, the coefficient on `CFPL:forc.high` is positive and
 significant, suggesting foreclosures in high foreclosure counties
@@ -403,28 +406,32 @@ A couple of things to note about the DDD regression:
 
 1. We can assess the parallel pre-trends assumption: During the
    pre-treatment period, the mean of foreclosures for non-California,
-   high foreclosures is `(Intercept) + forc.high`; while the
+   high foreclosure counties is `(Intercept) + forc.high`; while the
    pre-treatment mean of foreclosures for high foreclosure California
    counties is `(Intercept) + forc.high + CA + forc.high:CA`. The
-   difference, and what we need to test for the parallel pre-trends, is
-   $H_0$: `CA + forc.high:CA` $= 0$. The F-statistics for null that
+   difference, and what we need to test for the parallel pre-trends,
+   is $H_0$: `CA + forc.high:CA = 0`. The F-statistics for null that
    `CA + forc.high:CA = 0` is insignificant:
 
 ```{r }
 linearHypothesis(ddd.mod, "CA + forc.high:CA = 0", vcov = sandwich)
 ```
 
-2. The DDD estimate is `-756.3945` and statistically significant at
+2. Also notice in the above regression that the coefficient on `CA` is
+   insignificant. Thus, low foreclosure California counties are not
+   different from low foreclosure counties in other states during the
+   pre-CFPL period.
+3. The DDD estimate is `-756.3945` and statistically significant at
    the 1 percent level. This estimate means that foreclosures per
    10,000 homes in high foreclosure, California counties fell by
    -756.3945 due to the CFPLs
-3. Generally, in both DD and DDD research designs, you add extra
+4. Generally, in both DD and DDD research designs, you can add extra
    control variables to your regression if "randomization is based on
    covariates" (e.g. the parallel pre-trends hypothesis is satisfied
    after controlling for certain variables) or to lower standard
    errors (recall that if a covariate predicts the dependent variable
    and is included in the regression, then the variance of the
    residuals will be lower and the standard errors will fall)
-4. See
+5. See
    [Gabriel et al. (2017)](https://chandlerlutz.github.io/publication/california-foreclosure-prevention-laws/) for
    a panel data and  time-varying setup of the DDD approach. 
