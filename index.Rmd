@@ -33,6 +33,8 @@ h2 { /* Header 2 */
 }
 </style>
 
+[Download the most recent pdf version](https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs/blob/master/CFPLs_DDD.pdf).
+
 
 This case study will use a difference-in-differences-in-differences
 (DDD) research design to study the impact of the 2008 California
