@@ -11,3 +11,10 @@ rmarkdown::render("index.Rmd",
 rmarkdown::render("index.Rmd",
                   output_format = "pdf_document",
                   output_file = "CFPLs_DDD.pdf")
+knitr::knit("index.Rmd",
+            tangle = TRUE,
+            output = "CFPLs_DDD.R")
+##Delete knitr and rmarkdown output from .R file
+R_file <- readLines("CFPLs_DDD.R")
+R_file <- R_file[3:length(R_file)]
+write(R_file, file = "CFPLs_DDD.R")
