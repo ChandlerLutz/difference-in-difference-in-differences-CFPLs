@@ -1,6 +1,6 @@
 ---
 title: |
-  | Differences-in-Differences-in-Differences
+  | Difference-in-Difference-in-Differences
   | CFPLs Case Study 
 pagetitle: DDD CFPLs
 subtitle: |
@@ -42,7 +42,7 @@ h2 { /* Header 2 */
 # Overview
 
 This case study will use a
-difference-in-differences-in-differences(DDD) research design to study
+difference-in-difference-in-differences(DDD) research design to study
 the impact of the 2008 California Foreclosure Prevention Laws (CFPLs)
 that aimed to reduce foreclosures at the height of the financial
 crises. These laws are called the California Foreclosure Prevention
@@ -78,11 +78,11 @@ the `data.table` and `magrittr` packages for regression as well as the
 In 2008, California housing markets were spiraling
 downwards. California Policymakers implemented a set of new
 foreclosure laws that increased the pecuniary and time costs of
-foreclosure. Our aim is to analyze the effects of these policies on
-foreclosures
+foreclosure in an attempt to mitigate the rise in foreclosures. Our
+aim is to analyze the effects of these policies on foreclosures
 (See
 [Gabriel et. al. (2017)](https://chandlerlutz.github.io/publication/california-foreclosure-prevention-laws/) for
-more details). 
+more details).
 
 # Data 
 
@@ -140,7 +140,7 @@ $$
 0, CFPL = 0}})
 $$
 
-$\hat{\delta}$ is the differences-in-differences estimator (the
+$\hat{\delta}$ is the difference-in-differences estimator (the
 difference in two differences). 
 
 The first difference is the mean change in $Y$ for California counties
@@ -327,7 +327,7 @@ significant. The DD estimate tells us that foreclosures were 570.848
 lower per 10,000 homes in high foreclosure California counties,
 relative to high foreclosure counties in other states. 
 
-# Differences-in-differences-in-differences (DDD)
+# Difference-in-difference-in-differences (DDD)
 
 The above DD estimates are appealing, but none account for within
 California macro-level trends while satisfying the parallel pre-trends
@@ -340,7 +340,7 @@ means between high and low foreclosure counties within California
 low foreclosure counties outside of California (second difference);
 and (3) take the difference of the first two differences. In essence,
 the DDD estimator is the difference in two difference-in-differences
-estimators; hence the name "Differences-in-differences-in-differences"
+estimators; hence the name "Difference-in-difference-in-differences"
 
 
 To see how the DDD estimator works, let's calculate the three
