@@ -3,6 +3,12 @@ title: |
   | Differences-in-Differences-in-Differences
   | CFPLs Case Study 
 pagetitle: DDD CFPLs
+subtitle: |
+  [Pdf version of this document](https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs/blob/master/CFPLs_DDD.pdf)
+  
+  [Github repository for this document](https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs)
+
+
 author: "Chandler Lutz"
 date: "Last Updated `r Sys.Date()`"
 output:
@@ -33,17 +39,28 @@ h2 { /* Header 2 */
 }
 </style>
 
-* [The Github Repository for this project is here](https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs)
-* [Download the most recent pdf version](https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs/blob/master/CFPLs_DDD.pdf).
-
 # Overview
 
-This case study will use a difference-in-differences-in-differences
-(DDD) research design to study the impact of the 2008 California
-Foreclosure Prevention Laws (CFPLs) that aimed to reduce foreclosures
-at the height of the financial crises. These laws are called the
-California Foreclosure Prevention Laws. We first start with a classic
-difference-in-differences analysis and then cover the DDD approach.  
+This case study will use a
+difference-in-differences-in-differences(DDD) research design to study
+the impact of the 2008 California Foreclosure Prevention Laws (CFPLs)
+that aimed to reduce foreclosures at the height of the financial
+crises. These laws are called the California Foreclosure Prevention
+Laws. We first start with a classic difference-in-differences analysis
+and then cover the DDD approach.
+
+# Preliminaries
+
+* This tutorial is based on [Gabriel et al. (2017)](https://chandlerlutz.github.io/publication/california-foreclosure-prevention-laws/)
+* [The Github Repository for this project is here](https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs).
+*
+  [Download the most recent pdf version here](https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs/blob/master/CFPLs_DDD.pdf).
+*
+  [Data can be downloaded in either rds or csv here](https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs/tree/master/data-raw).
+  
+This tutorial will employ the `R` statistical computing environment and
+the `data.table` and `magrittr` packages for regression as well as the
+`AER` package for regression analysis. 
 
 # DDD Notes and resources 
 
@@ -67,12 +84,6 @@ foreclosures
 [Gabriel et. al. (2017)](https://chandlerlutz.github.io/publication/california-foreclosure-prevention-laws/) for
 more details). 
 
-# Software 
-
-This tutorial will employ the `R` statistical computing environment and
-the `data.table` and `magrittr` packages for regression as well as the
-`AER` package for regression analysis. 
-
 # Data 
 
 ```{r warning=FALSE,message=FALSE}
@@ -80,7 +91,7 @@ the `data.table` and `magrittr` packages for regression as well as the
 library(ggplot2); library(magrittr); library(data.table); library(AER)
 
 #Read in the Data
-DT <- readRDS("data-raw/county_forc_cfpl_data.rds")
+DT <- fread("https://raw.githubusercontent.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs/master/data-raw/county_forc_cfpl_data.csv")
 ```
 
 The data contain the following variables:
