@@ -59,7 +59,8 @@ difference-in-differences analysis and then cover the DDD approach.
   
 This tutorial will employ the `R` statistical computing environment
 and the `data.table` and `magrittr` packages for data manipulation as
-well as the `AER` package for regression analysis.
+well as the `AER` package for regression analysis. `ggplot2` is used
+for graphics. 
 
 # DDD Notes and resources 
 
