@@ -58,9 +58,9 @@ and then cover the DDD approach.
 *
   [Data can be downloaded in either rds or csv here](https://github.com/ChandlerLutz/difference-in-difference-in-differences-CFPLs/tree/master/data-raw).
   
-This tutorial will employ the `R` statistical computing environment and
-the `data.table` and `magrittr` packages for regression as well as the
-`AER` package for regression analysis. 
+This tutorial will employ the `R` statistical computing environment
+and the `data.table` and `magrittr` packages for data manipulation as
+well as the `AER` package for regression analysis.
 
 # DDD Notes and resources 
 
