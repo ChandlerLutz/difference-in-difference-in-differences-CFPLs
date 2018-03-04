@@ -56,6 +56,8 @@ difference-in-differences analysis and then cover the DDD approach.
   [Download the most recent pdf version here](https://github.com/ChandlerLutz/difference-in-difference-in-differences-CFPLs/blob/master/CFPLs_DDD.pdf).
 *
   [Data can be downloaded in either rds or csv here](https://github.com/ChandlerLutz/difference-in-difference-in-differences-CFPLs/tree/master/data-raw).
+*
+  [The complete R code is here](https://github.com/ChandlerLutz/difference-in-difference-in-differences-CFPLs/blob/master/CFPLs_DDD.R). 
   
 This tutorial will employ the `R` statistical computing environment
 and the `data.table` and `magrittr` packages for data manipulation as
