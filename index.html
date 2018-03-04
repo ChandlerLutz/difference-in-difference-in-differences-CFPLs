@@ -546,6 +546,7 @@ print(dd.means)</code></pre>
 <p><strong>Third Difference (DDD estimate)</strong>:</p>
 <p>Our third difference is the difference in our first two differences: <code>272.642272.642</code> <span class="math inline">\(-\)</span> <code>1029.0368</code> <span class="math inline">\(=\)</span> <code>-756.3948</code>.</p>
 <p>This is our DDD estimate and yields the estimate of the CFPLs on high foreclosure counties in California, netting out changes in low foreclosure California counties and change in high foreclosure counties in other states relative to low foreclosure counties in other states.</p>
+<p><strong>The DDD Regression</strong>:</p>
 <p>We can confirm our estimate using a full DDD regression. Note here that we use the full dataset and that <code>CA</code> <span class="math inline">\(\times\)</span> <code>forc.high</code> is the treated group and all other counties (even low counties within California) are controls. The assumption behind identification here is that CFPL foreclosure prevention policies should have an outsized impact on high foreclosure counties.</p>
 <pre class="r"><code>#We're going to save the model b/c we'll need it later 
 ddd.mod &lt;- lm(zillow.forc ~ CFPL * forc.high * CA, data = DT, weights = hh2000)

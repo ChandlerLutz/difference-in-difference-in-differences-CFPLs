@@ -384,6 +384,8 @@ foreclosure California counties and change in high foreclosure
 counties in other states relative to low foreclosure counties in other
 states. 
 
+**The DDD Regression**:
+
 We can confirm our estimate using a full DDD regression. Note here
 that we use the full dataset and that `CA` $\times$ `forc.high` is the
 treated group and all other counties (even low counties within
