@@ -303,10 +303,10 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore"><div class="line-block">Differences-in-Differences-in-Differences
+<h1 class="title toc-ignore"><div class="line-block">Difference-in-Difference-in-Differences
 CFPLs Case Study</div></h1>
-<h3 class="subtitle"><em><p><a href="https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs/blob/master/CFPLs_DDD.pdf">Pdf version of this document</a></p>
-<a href="https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs">Github repository for this document</a></em></h3>
+<h3 class="subtitle"><em><p><a href="https://github.com/ChandlerLutz/difference-in-difference-in-differences-CFPLs/blob/master/CFPLs_DDD.pdf">Pdf version of this document</a></p>
+<a href="https://github.com/ChandlerLutz/difference-in-difference-in-differences-CFPLs">Github repository for this document</a></em></h3>
 <h4 class="author"><em>Chandler Lutz</em></h4>
 <h4 class="date"><em>Last Updated 2018-03-04</em></h4>
 
@@ -324,7 +324,7 @@ CFPLs Case Study</div></h1>
 <li><a href="#difference-in-differences-dd-means-estimate"><span class="toc-section-number">8</span> Difference-in-differences (DD) means estimate</a></li>
 <li><a href="#difference-in-differences-dd-means-estimate-using-regression"><span class="toc-section-number">9</span> Difference-in-differences (DD) means estimate using regression</a></li>
 <li><a href="#other-difference-in-differences-estimators"><span class="toc-section-number">10</span> Other Difference-in-differences estimators</a></li>
-<li><a href="#differences-in-differences-in-differences-ddd"><span class="toc-section-number">11</span> Differences-in-differences-in-differences (DDD)</a></li>
+<li><a href="#difference-in-difference-in-differences-ddd"><span class="toc-section-number">11</span> Difference-in-difference-in-differences (DDD)</a></li>
 </ul>
 </div>
 
@@ -341,15 +341,15 @@ h2 { /* Header 2 */
 </style>
 <section id="overview" class="level1">
 <h1><span class="header-section-number">1</span> Overview</h1>
-<p>This case study will use a difference-in-differences-in-differences(DDD) research design to study the impact of the 2008 California Foreclosure Prevention Laws (CFPLs) that aimed to reduce foreclosures at the height of the financial crises. These laws are called the California Foreclosure Prevention Laws. We first start with a classic difference-in-differences analysis and then cover the DDD approach.</p>
+<p>This case study will use a difference-in-difference-in-differences(DDD) research design to study the impact of the 2008 California Foreclosure Prevention Laws (CFPLs) that aimed to reduce foreclosures at the height of the financial crises. These laws are called the California Foreclosure Prevention Laws. We first start with a classic difference-in-differences analysis and then cover the DDD approach.</p>
 </section>
 <section id="preliminaries" class="level1">
 <h1><span class="header-section-number">2</span> Preliminaries</h1>
 <ul>
 <li>This tutorial is based on <a href="https://chandlerlutz.github.io/publication/california-foreclosure-prevention-laws/">Gabriel et al. (2017)</a></li>
-<li><a href="https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs">The Github Repository for this project is here</a>.</li>
-<li><a href="https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs/blob/master/CFPLs_DDD.pdf">Download the most recent pdf version here</a>.</li>
-<li><a href="https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs/tree/master/data-raw">Data can be downloaded in either rds or csv here</a>.</li>
+<li><a href="https://github.com/ChandlerLutz/difference-in-difference-in-differences-CFPLs">The Github Repository for this project is here</a>.</li>
+<li><a href="https://github.com/ChandlerLutz/difference-in-difference-in-differences-CFPLs/blob/master/CFPLs_DDD.pdf">Download the most recent pdf version here</a>.</li>
+<li><a href="https://github.com/ChandlerLutz/difference-in-difference-in-differences-CFPLs/tree/master/data-raw">Data can be downloaded in either rds or csv here</a>.</li>
 </ul>
 <p>This tutorial will employ the <code>R</code> statistical computing environment and the <code>data.table</code> and <code>magrittr</code> packages for regression as well as the <code>AER</code> package for regression analysis.</p>
 </section>
@@ -363,7 +363,7 @@ h2 { /* Header 2 */
 </section>
 <section id="policy-background" class="level1">
 <h1><span class="header-section-number">4</span> Policy Background</h1>
-<p>In 2008, California housing markets were spiraling downwards. California Policymakers implemented a set of new foreclosure laws that increased the pecuniary and time costs of foreclosure. Our aim is to analyze the effects of these policies on foreclosures (See <a href="https://chandlerlutz.github.io/publication/california-foreclosure-prevention-laws/">Gabriel et. al. (2017)</a> for more details).</p>
+<p>In 2008, California housing markets were spiraling downwards. California Policymakers implemented a set of new foreclosure laws that increased the pecuniary and time costs of foreclosure in an attempt to mitigate the rise in foreclosures. Our aim is to analyze the effects of these policies on foreclosures (See <a href="https://chandlerlutz.github.io/publication/california-foreclosure-prevention-laws/">Gabriel et. al. (2017)</a> for more details).</p>
 </section>
 <section id="data" class="level1">
 <h1><span class="header-section-number">5</span> Data</h1>
@@ -371,7 +371,7 @@ h2 { /* Header 2 */
 library(ggplot2); library(magrittr); library(data.table); library(AER)
 
 #Read in the Data
-DT &lt;- fread(&quot;https://raw.githubusercontent.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs/master/data-raw/county_forc_cfpl_data.csv&quot;)</code></pre>
+DT &lt;- fread(&quot;https://raw.githubusercontent.com/ChandlerLutz/difference-in-difference-in-differences-CFPLs/master/data-raw/county_forc_cfpl_data.csv&quot;)</code></pre>
 <p>The data contain the following variables:</p>
 <ul>
 <li><code>CA</code> – an indicator equal to 1 for California and zero otherwise</li>
@@ -405,7 +405,7 @@ DT &lt;- fread(&quot;https://raw.githubusercontent.com/ChandlerLutz/differences-
 1, CFPL = 0}}) - (\bar{Y}_{\text{CA = 0, CFPL = 1}} - \bar{Y}_{\text{CA =
 0, CFPL = 0}})
 \]</span></p>
-<p><span class="math inline">\(\hat{\delta}\)</span> is the differences-in-differences estimator (the difference in two differences).</p>
+<p><span class="math inline">\(\hat{\delta}\)</span> is the difference-in-differences estimator (the difference in two differences).</p>
 <p>The first difference is the mean change in <span class="math inline">\(Y\)</span> for California counties (the treatment group), <span class="math inline">\((\bar{Y}_{\text{CA = 1, CFPL = 1}} - \bar{Y}_{\text{CA = 1, CFPL = 0}})\)</span>. This first difference is also often called the “before-after” estimator as we compare <span class="math inline">\(\bar{Y}\)</span> in California before and after the policy</p>
 <p>The second difference is the mean change in <span class="math inline">\(Y\)</span> for non-California counties (the control group).</p>
 <p>Taking the difference of the above differences yields the difference-in-differences estimate</p>
@@ -508,10 +508,10 @@ print(dd.means)</code></pre>
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>The output from this regression is rather encouraging: The parallel pre-trends assumption is satisfied (the coefficient on <code>CA</code> is small and insignificant), and the DD estimate is negative and significant. The DD estimate tells us that foreclosures were 570.848 lower per 10,000 homes in high foreclosure California counties, relative to high foreclosure counties in other states.</p>
 </section>
-<section id="differences-in-differences-in-differences-ddd" class="level1">
-<h1><span class="header-section-number">11</span> Differences-in-differences-in-differences (DDD)</h1>
+<section id="difference-in-difference-in-differences-ddd" class="level1">
+<h1><span class="header-section-number">11</span> Difference-in-difference-in-differences (DDD)</h1>
 <p>The above DD estimates are appealing, but none account for within California macro-level trends while satisfying the parallel pre-trends assumption. Here, we’re going to explore a comprehensive DDD estimate.</p>
-<p>Essentially, the DDD estimator is going to (1) compare the change in means between high and low foreclosure counties within California (first difference); (2) compare the change in means between high and low foreclosure counties outside of California (second difference); and (3) take the difference of the first two differences. In essence, the DDD estimator is the difference in two difference-in-differences estimators; hence the name “Differences-in-differences-in-differences”</p>
+<p>Essentially, the DDD estimator is going to (1) compare the change in means between high and low foreclosure counties within California (first difference); (2) compare the change in means between high and low foreclosure counties outside of California (second difference); and (3) take the difference of the first two differences. In essence, the DDD estimator is the difference in two difference-in-differences estimators; hence the name “Difference-in-difference-in-differences”</p>
 <p>To see how the DDD estimator works, let’s calculate the three differences separately:</p>
 <p><strong>First Difference</strong>:</p>
 <p>The first difference is the <em>within</em> California difference between high a low foreclosure counties:</p>
@@ -585,6 +585,7 @@ ddd.mod %&gt;% coeftest(sandwich)</code></pre>
 <ol start="2" type="1">
 <li>The DDD estimate is <code>-756.3945</code> and statistically significant at the 1 percent level. This estimate means that foreclosures per 10,000 homes in high foreclosure, California counties fell by -756.3945 due to the CFPLs</li>
 <li>Generally, in both DD and DDD research designs, you add extra control variables to your regression if “randomization is based on covariates” (e.g. the parallel pre-trends hypothesis is satisfied after controlling for certain variables) or to lower standard errors (recall that if a covariate predicts the dependent variable and is included in the regression, then the variance of the residuals will be lower and the standard errors will fall)</li>
+<li>See <a href="https://chandlerlutz.github.io/publication/california-foreclosure-prevention-laws/">Gabriel et al. (2017)</a> for a panel data and time-varying setup of the DDD approach.</li>
 </ol>
 </section>
 

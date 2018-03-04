@@ -4,9 +4,9 @@ title: |
   | CFPLs Case Study 
 pagetitle: DDD CFPLs
 subtitle: |
-  [Pdf version of this document](https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs/blob/master/CFPLs_DDD.pdf)
+  [Pdf version of this document](https://github.com/ChandlerLutz/difference-in-difference-in-differences-CFPLs/blob/master/CFPLs_DDD.pdf)
   
-  [Github repository for this document](https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs)
+  [Github repository for this document](https://github.com/ChandlerLutz/difference-in-difference-in-differences-CFPLs)
 
 
 author: "Chandler Lutz"
@@ -52,11 +52,11 @@ and then cover the DDD approach.
 # Preliminaries
 
 * This tutorial is based on [Gabriel et al. (2017)](https://chandlerlutz.github.io/publication/california-foreclosure-prevention-laws/)
-* [The Github Repository for this project is here](https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs).
+* [The Github Repository for this project is here](https://github.com/ChandlerLutz/difference-in-difference-in-differences-CFPLs).
 *
-  [Download the most recent pdf version here](https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs/blob/master/CFPLs_DDD.pdf).
+  [Download the most recent pdf version here](https://github.com/ChandlerLutz/difference-in-difference-in-differences-CFPLs/blob/master/CFPLs_DDD.pdf).
 *
-  [Data can be downloaded in either rds or csv here](https://github.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs/tree/master/data-raw).
+  [Data can be downloaded in either rds or csv here](https://github.com/ChandlerLutz/difference-in-difference-in-differences-CFPLs/tree/master/data-raw).
   
 This tutorial will employ the `R` statistical computing environment and
 the `data.table` and `magrittr` packages for regression as well as the
@@ -91,7 +91,7 @@ more details).
 library(ggplot2); library(magrittr); library(data.table); library(AER)
 
 #Read in the Data
-DT <- fread("https://raw.githubusercontent.com/ChandlerLutz/differences-in-differences-in-differences-CFPLs/master/data-raw/county_forc_cfpl_data.csv")
+DT <- fread("https://raw.githubusercontent.com/ChandlerLutz/difference-in-difference-in-differences-CFPLs/master/data-raw/county_forc_cfpl_data.csv")
 ```
 
 The data contain the following variables:
@@ -423,3 +423,6 @@ linearHypothesis(ddd.mod, "CA + forc.high:CA = 0", vcov = sandwich)
    errors (recall that if a covariate predicts the dependent variable
    and is included in the regression, then the variance of the
    residuals will be lower and the standard errors will fall)
+4. See
+   [Gabriel et al. (2017)](https://chandlerlutz.github.io/publication/california-foreclosure-prevention-laws/) for
+   a panel data and  time-varying setup of the DDD approach. 
